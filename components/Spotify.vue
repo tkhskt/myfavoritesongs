@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     onHoverLink() {
-      console.log('aaaaa')
       this.hoverLink = true
     },
     onHoverOutLink() {

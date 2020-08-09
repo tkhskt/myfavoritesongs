@@ -18,6 +18,9 @@
         <Songs />
       </div>
     </div>
+    <div class="discover">
+      <Discover />
+    </div>
   </div>
 </template>
 
@@ -27,10 +30,12 @@ export default {}
 
 <style scoped lang="scss">
 .container {
+  position: relative;
   display: flex;
   align-items: center;
   padding-left: $padding-horizontal;
   height: 100vh;
+  overflow: hidden;
 }
 .left {
   position: relative;
@@ -54,5 +59,10 @@ export default {}
   &__twitter {
     margin-right: 2vmin;
   }
+}
+.discover {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 </style>
