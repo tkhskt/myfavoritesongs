@@ -1,27 +1,21 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        myfavoritesongs
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <div class="left">
+      <div class="left__logo">
+        <Logo />
+      </div>
+      <div class="link">
+        <div class="link__twitter">
+          <Twitter />
+        </div>
+        <div class="link__spotify">
+          <Spotify />
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="right__songs">
+        <Songs />
       </div>
     </div>
   </div>
@@ -31,35 +25,34 @@
 export default {}
 </script>
 
-<style>
+<style scoped lang="scss">
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: $padding-horizontal;
+  height: 100vh;
+}
+.left {
+  position: relative;
+  flex-grow: 1;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.right {
+  flex-grow: 1;
+  &__songs {
+    right: 0;
+  }
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.link {
+  position: absolute;
+  bottom: 2.3vh;
+  left: 0;
+  display: flex;
+  &__twitter {
+    margin-right: 2vmin;
+  }
 }
 </style>

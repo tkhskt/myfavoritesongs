@@ -24,12 +24,19 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://use.typekit.net/bqd0emk.css' },
+    ],
   },
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '@/assets/css/base.scss',
+    '@/assets/css/ress.css',
+    '@/assets/css/locomotive.css',
+  ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -46,7 +53,13 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources',
   ],
+  styleResources: {
+    scss: [
+      '@assets/css/_constants.scss', // use underscore "_" & also file extension ".scss"
+    ],
+  },
   /*
    ** Nuxt.js modules
    */
