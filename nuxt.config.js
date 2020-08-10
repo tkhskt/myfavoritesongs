@@ -37,7 +37,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ['~/plugins/lazyload'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -68,7 +68,11 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'https://us-central1-myfavoritesongs.cloudfunctions.net/playlist',
+    proxyHeaders: false,
+    credentials: false,
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
