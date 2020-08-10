@@ -45,9 +45,7 @@
   position: absolute;
   right: 0;
   display: flex;
-  overflow: hidden;
   will-change: transform;
-  // transform: rotateY(-45deg);
   transform-origin: right;
   &__content {
     height: 100%;
@@ -75,14 +73,24 @@ export default {
     }
   },
   mounted() {
-    const element = document.scrollingElement || document.documentElement
-    element.addEventListener('wheel', this.transformScroll)
-    const listElement = document.getElementById('list')
-    this.listWidth = listElement.offsetWidth * 5
-    this.raf = raf
-    this.raf(this.update)
+    this.$nextTick(() => {
+      const element = document.scrollingElement || document.documentElement
+      element.addEventListener('wheel', this.transformScroll)
+      this.raf = raf
+      this.raf(this.update)
+
+      window.addEventListener('resize', this.onResize)
+      window.dispatchEvent(new Event('resize'))
+    })
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize)
   },
   methods: {
+    onResize() {
+      this.currentScrollPosition = 0
+      this.scrollTarget = 0
+    },
     transformScroll(event) {
       if (
         !event.deltaY ||
@@ -95,6 +103,10 @@ export default {
       event.preventDefault()
     },
     update() {
+      this.listWidth =
+        document.getElementById('list').scrollWidth -
+        window.innerHeight -
+        window.innerHeight * 0.05
       if (this.currentScrollPosition <= 0 && this.scrollTarget < 0) {
         this.atStartOfList = true
         this.scrollTarget = 0
