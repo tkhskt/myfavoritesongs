@@ -13,10 +13,11 @@
   height: 100%;
   background: $color-primary;
   opacity: 1;
-  z-index: 5;
-  transition: opacity 1s ease;
+  z-index: 100;
+  transition: all 1s ease;
   &__completed {
     opacity: 0;
+    z-index: 0;
   }
 }
 </style>

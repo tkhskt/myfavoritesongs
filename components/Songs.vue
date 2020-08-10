@@ -77,6 +77,7 @@ export default {
     onResize() {
       this.currentScrollPosition = 0
       this.scrollTarget = 0
+      console.log(`${window.innerWidth}`)
     },
     transformScroll(event) {
       if (
@@ -122,7 +123,7 @@ export default {
 
       const x = this.currentScrollPosition * Math.cos((45 * Math.PI) / 180)
       const z = this.currentScrollPosition * Math.sin((45 * Math.PI) / 180)
-      if (window.innerWidth <= 1300) {
+      if (window.innerWidth <= 1350) {
         this.translate3d = `translate3d(${this.currentScrollPosition}px, 0px, 0px) rotateY(0)`
         this.raf(this.update)
         return

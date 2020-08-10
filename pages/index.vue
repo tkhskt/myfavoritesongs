@@ -74,6 +74,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 50;
+  @media screen and (max-width: 1349px) {
+    align-items: start;
+    margin-top: 2.3vh;
+  }
 }
 .right {
   flex-grow: 1;
