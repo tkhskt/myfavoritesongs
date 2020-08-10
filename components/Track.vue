@@ -2,8 +2,13 @@
   <img
     :id="track.track.id"
     v-lazy="track.track.album.images[0].url"
-    :class="{ hide: !show }"
+    :class="{
+      hide: !show,
+      'list__img--hover': !scrolling && !hover && isHoverTrack,
+    }"
     class="list__img"
+    @mouseover="onHover"
+    @mouseleave="onHoverOut"
   />
   <!-- <div :id="track.track.id" :class="{ hidden: show }" class="list__img">
     aaaaa
@@ -13,6 +18,9 @@
 <style scoped lang="scss">
 .list__img {
   height: 90vmin;
+  &--hover {
+    // filter: blur(10px);
+  }
 }
 .hide {
   visibility: hidden;
@@ -20,19 +28,32 @@
 </style>
 <script>
 import raf from 'raf'
+import { mapState } from 'vuex'
 
 export default {
   props: ['track', 'parentSize'],
   data() {
     return {
       show: false,
+      hover: false,
     }
+  },
+  computed: {
+    ...mapState('top', ['isHoverTrack', 'scrolling']),
   },
   mounted() {
     this.raf = raf
     this.raf(this.update)
   },
   methods: {
+    onHover() {
+      this.hover = true
+      this.$store.dispatch('top/onHover')
+    },
+    onHoverOut() {
+      this.hover = false
+      this.$store.dispatch('top/onHoverOut')
+    },
     update() {
       if (document.getElementById(this.track.track.id) == null) {
         return false
