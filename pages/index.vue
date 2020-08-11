@@ -41,7 +41,7 @@ export default {
     axios
       .get('https://us-central1-myfavoritesongs.cloudfunctions.net/playlist')
       .then((response) => {
-        this.tracks = response.data.items
+        this.tracks = response.data.items.reverse()
         this.loading = false
       })
       .catch(function (error) {

@@ -1,14 +1,21 @@
 export const state = () => ({
   isHoverTrack: false,
   scrolling: false,
+  hoverTrack: {
+    id: '',
+    name: '',
+    color: '#000',
+  },
 })
 
 export const actions = {
-  onHover({ commit }) {
+  onHover({ commit }, track) {
     commit('setIsHoverTrack', true)
+    commit('setHoverTrack', track)
   },
   onHoverOut({ commit }) {
     commit('setIsHoverTrack', false)
+    commit('setHoverTrack', { id: '', name: '', color: '#000' })
   },
   onScroll({ commit }) {
     commit('setScrolling', true)
@@ -24,5 +31,8 @@ export const mutations = {
   },
   setScrolling(state, value) {
     state.scrolling = value
+  },
+  setHoverTrack(state, value) {
+    state.hoverTrack = value
   },
 }

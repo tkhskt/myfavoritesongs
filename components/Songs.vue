@@ -1,14 +1,8 @@
 <template>
   <div id="songs" class="songs">
     <ul id="list" class="list" :style="{ transform: translate3d }">
-      <li
-        v-for="(track, index) in tracks"
-        :key="track.track.id"
-        class="list__content"
-      >
-        <template v-if="index > 0">
-          <Track :track="track" :parent-size="parentSize" />
-        </template>
+      <li v-for="track in tracks" :key="track.track.id" class="list__content">
+        <Track :track="track" :parent-size="parentSize" />
       </li>
     </ul>
   </div>
@@ -21,7 +15,6 @@
   margin-left: auto;
   transform-style: preserve-3d;
   perspective: 1000px;
-  // overflow: hidden;
 }
 .list {
   position: absolute;
