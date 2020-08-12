@@ -19,9 +19,9 @@
   align-items: center;
   width: 7.5vmin;
   height: 2vmin;
-  cursor: pointer;
   &__text {
     position: absolute;
+    pointer-events: none;
     left: calc(3vmin + 8px);
     font-size: 1.5vmin;
     letter-spacing: 0.08em;
@@ -30,8 +30,10 @@
 .line {
   position: relative;
   width: 3vmin;
+  pointer-events: none;
   &__line {
     position: absolute;
+    pointer-events: none;
     right: 0;
     width: 100%;
     height: 0.2vmin;

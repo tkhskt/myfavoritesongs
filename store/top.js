@@ -5,6 +5,7 @@ export const state = () => ({
     id: '',
     name: '',
     color: '#000',
+    inverseColor: '#000',
   },
 })
 
@@ -15,7 +16,12 @@ export const actions = {
   },
   onHoverOut({ commit }) {
     commit('setIsHoverTrack', false)
-    commit('setHoverTrack', { id: '', name: '', color: '#000' })
+    commit('setHoverTrack', {
+      id: '',
+      name: '',
+      color: '#000',
+      inverseColor: '#000',
+    })
   },
   onScroll({ commit }) {
     commit('setScrolling', true)

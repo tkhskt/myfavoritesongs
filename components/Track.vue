@@ -37,6 +37,7 @@ export default {
       show: false,
       hover: false,
       color: '',
+      inverseColor: '',
     }
   },
   computed: {
@@ -56,6 +57,14 @@ export default {
       const colorThief = new ColorThief()
       const thiefColor = colorThief.getColor(img)
       this.color = rgbToHex(thiefColor[0], thiefColor[1], thiefColor[2])
+      if (
+        thiefColor[0] * 0.299 + thiefColor[1] * 0.587 + thiefColor[2] * 0.114 >
+        186
+      ) {
+        this.inverseColor = '#000000'
+      } else {
+        this.inverseColor = '#ffffff'
+      }
     }
     img.crossOrigin = 'Anonymous'
     img.src = this.track.track.album.images[0].url
@@ -69,6 +78,7 @@ export default {
         id: this.track.track.id,
         name: this.track.track.name,
         color: this.color,
+        inverseColor: this.inverseColor,
       })
     },
     onHoverOut() {
