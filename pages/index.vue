@@ -1,12 +1,36 @@
 <template>
   <div class="container">
-    <div class="loading">
-      <Loading :loading="loading" />
-    </div>
-    <div class="left">
-      <div class="left__logo">
-        <Logo />
+    <div class="background-mask" :style="{ background: maskBackground }"></div>
+    <section class="container__main">
+      <div class="loading" :class="{ 'loading--loaded': !loading }">
+        <Loading :loading="loading" />
       </div>
+      <div class="left">
+        <div class="left__logo">
+          <Logo />
+        </div>
+      </div>
+      <div class="right" :class="{ 'right--appear': !loading }">
+        <div class="right__songs">
+          <Songs :tracks="tracks" />
+        </div>
+      </div>
+      <div
+        v-if="descriptionVisible && !cursorAnimationRunning"
+        class="discover"
+      >
+        <Discover />
+      </div>
+    </section>
+    <transition name="fade">
+      <section
+        v-if="!cursorAnimationRunning && descriptionVisible"
+        class="description"
+      >
+        <TrackCard />
+      </section>
+    </transition>
+    <nav>
       <div class="link">
         <div class="link__twitter">
           <Twitter />
@@ -15,19 +39,12 @@
           <Spotify />
         </div>
       </div>
-    </div>
-    <div class="right" :class="{ 'right--appear': !loading }">
-      <div class="right__songs">
-        <Songs :tracks="tracks" />
-      </div>
-    </div>
-    <div class="discover">
-      <Discover />
-    </div>
+    </nav>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import axios from 'axios'
 
 export default {
@@ -36,6 +53,14 @@ export default {
       loading: true,
       tracks: [],
     }
+  },
+  computed: {
+    ...mapState('description', [
+      'currentTrack',
+      'cursorAnimationRunning',
+      'descriptionVisible',
+      'maskBackground',
+    ]),
   },
   created() {
     axios
@@ -53,12 +78,23 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: $padding-horizontal;
-  height: 100vh;
-  overflow: hidden;
+  &__main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: $padding-horizontal;
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+.background-mask {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z-mask;
 }
 .loading {
   position: absolute;
@@ -66,6 +102,10 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: $z-loading;
+  &--loaded {
+    pointer-events: none;
+  }
 }
 .left {
   position: relative;
@@ -74,7 +114,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 50;
   @media screen and (max-width: 1349px) {
     align-items: start;
     margin-top: 2.3vh;
@@ -92,11 +131,28 @@ export default {
     transition: opacity 1.5s ease;
   }
 }
+.description {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $color-primary;
+  z-index: $z-description;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 .link {
   position: absolute;
   bottom: 2.3vh;
-  left: 0;
+  left: $padding-horizontal;
   display: flex;
+  z-index: $z-link;
   &__twitter {
     margin-right: 2vmin;
   }

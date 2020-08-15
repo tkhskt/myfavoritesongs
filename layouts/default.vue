@@ -2,11 +2,12 @@
   <div>
     <Nuxt />
     <span
+      v-show="!hoverPlayer"
       id="cursor"
       class="cursor"
       :style="{
-        background: background,
-        border: `0.5px solid ${hoverTrack.inverseColor}`,
+        background: cursorBackground,
+        border: `0.5px solid ${inverseColor}`,
       }"
       :class="{ cursor__social: hoverSocialLink }"
     ></span>
@@ -28,8 +29,7 @@
   background: #000;
   border-radius: 50% 50%;
   will-change: left top;
-  /* mix-blend-mode: difference; */
-  z-index: 5000;
+  z-index: $z-cursor;
   &__social {
     background-color: #fff;
   }
@@ -43,15 +43,53 @@ export default {
   data() {
     return {
       hoverSocialLink: false,
+      trackClickAnimationRunnning: false,
     }
   },
   computed: {
     ...mapState('top', ['hoverTrack']),
-    background() {
-      if (this.hoverSocialLink) {
+    ...mapState('description', [
+      'currentTrack',
+      'cursorAnimationRunning',
+      'descriptionVisible',
+      'hoverCloseButton',
+      'maskBackground',
+      'hoverPlayer',
+    ]),
+    cursorBackground() {
+      if (this.hoverSocialLink || this.hoverCloseButton) {
         return 'transparent'
       }
+      if (this.cursorAnimationRunning) {
+        return this.currentTrack.color
+      }
       return this.hoverTrack.color
+    },
+    inverseColor() {
+      if (this.cursorAnimationRunning) {
+        return this.currentTrack.inverseColor
+      }
+      return this.hoverTrack.inverseColor
+    },
+  },
+  watch: {
+    cursorAnimationRunning(newValue) {
+      if (newValue) {
+        const cursor = document.getElementById('cursor')
+        const animation = TweenLite.to(cursor, 0.5, {
+          width: Math.max(window.innerHeight, window.innerWidth) * 2,
+          height: Math.max(window.innerHeight, window.innerWidth) * 2,
+          ease: Expo.easeIn,
+        })
+        animation.eventCallback('onComplete', () => {
+          TweenLite.to(cursor, 0, {
+            width: Math.max(window.innerHeight, window.innerWidth) * 0.01,
+            height: Math.max(window.innerHeight, window.innerWidth) * 0.01,
+            ease: Expo.easeIn,
+          })
+          this.$store.dispatch('description/onCursorAnimationEnd')
+        })
+      }
     },
   },
   mounted() {
@@ -62,13 +100,17 @@ export default {
   },
   methods: {
     mouseMove(event) {
+      if (this.cursorAnimationRunning) {
+        return
+      }
       const cursor = document.getElementById('cursor')
       const classList = event.target.classList
       this.hoverSocialLink =
         classList.contains('twitter') || classList.contains('spotify')
       if (
         event.target.classList.contains('list__img') ||
-        this.hoverSocialLink
+        this.hoverSocialLink ||
+        this.hoverCloseButton
       ) {
         TweenLite.to(cursor, 1, {
           width: window.innerHeight * 0.05,

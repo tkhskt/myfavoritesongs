@@ -8,6 +8,7 @@
 <style scoped lang="scss">
 .logo {
   position: relative;
+  z-index: $z-logo;
   &__fav {
     text-align: left;
     font-size: 0.66rem;

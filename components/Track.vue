@@ -4,21 +4,20 @@
     :class="{
       hide: !show,
       'list__img--hover': !scrolling && !hover && isHoverTrack,
+      'list__img--description-selected': descriptionVisible,
     }"
     class="list__img"
     @mouseover="onHover"
     @mouseleave="onHoverOut"
+    @click="onClick"
   />
-  <!-- <div :id="track.track.id" :class="{ hidden: show }" class="list__img">
-    aaaaa
-  </div> -->
 </template>
 
 <style scoped lang="scss">
 .list__img {
   height: 90vmin;
-  &--hover {
-    // filter: blur(10px);
+  &--description-selected {
+    pointer-events: none;
   }
 }
 .hide {
@@ -42,6 +41,7 @@ export default {
   },
   computed: {
     ...mapState('top', ['isHoverTrack', 'scrolling']),
+    ...mapState('description', ['descriptionVisible']),
   },
   mounted() {
     const rgbToHex = (r, g, b) =>
@@ -84,6 +84,21 @@ export default {
     onHoverOut() {
       this.hover = false
       this.$store.dispatch('top/onHoverOut')
+    },
+    onClick() {
+      if (this.color === '') {
+        return
+      }
+      const currentTrack = {
+        id: this.track.track.id,
+        name: this.track.track.name,
+        artist: this.track.track.artists[0].name,
+        img: this.track.track.album.images[0].url,
+        genre: [],
+        color: this.color,
+        inverseColor: this.inverseColor,
+      }
+      this.$store.dispatch('description/onTrackClick', currentTrack)
     },
     update() {
       if (document.getElementById(this.track.track.id) == null) {
