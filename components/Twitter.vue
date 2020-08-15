@@ -27,6 +27,7 @@
   height: 2vmin;
   text-decoration: none;
   user-select: none;
+  cursor: none;
   color: #000;
   &__text {
     position: absolute;
