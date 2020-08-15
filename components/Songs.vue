@@ -1,8 +1,16 @@
 <template>
   <div id="songs" class="songs">
     <ul id="list" class="list" :style="{ transform: translate3d }">
-      <li v-for="track in tracks" :key="track.track.id" class="list__content">
-        <Track :track="track" :parent-size="parentSize" />
+      <li
+        v-for="(track, index) in tracks"
+        :key="track.track.id"
+        class="list__content"
+      >
+        <Track
+          :track="track"
+          :parent-size="parentSize"
+          :number="tracks.length - index"
+        />
       </li>
     </ul>
   </div>

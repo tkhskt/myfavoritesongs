@@ -30,6 +30,14 @@
         <TrackCard />
       </section>
     </transition>
+    <transition name="fade">
+      <div
+        v-if="!cursorAnimationRunning && descriptionVisible"
+        class="page-title"
+      >
+        <p>My Favorite <span class="page-title__songs">Songs</span></p>
+      </div>
+    </transition>
     <nav>
       <div class="link">
         <div class="link__twitter">
@@ -114,7 +122,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 1349px) {
+  @media screen and (max-width: $breakpoint) {
     align-items: start;
     margin-top: 2.3vh;
   }
@@ -140,6 +148,25 @@ export default {
   background-color: $color-primary;
   z-index: $z-description;
 }
+.page-title {
+  position: absolute;
+  right: $padding-horizontal;
+  bottom: 1.5vh;
+  z-index: $z-description;
+  font-size: 2vmin;
+  @media screen and (max-width: $breakpoint) {
+    top: 2.5vh;
+    left: $padding-horizontal;
+    right: auto;
+    bottom: auto;
+  }
+  &__songs {
+    display: inline-block;
+    margin-left: 0.5vmin;
+    font-size: 3vmin;
+    color: $color-accent;
+  }
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
@@ -155,6 +182,9 @@ export default {
   z-index: $z-link;
   &__twitter {
     margin-right: 2vmin;
+    @media screen and (max-width: $breakpoint) {
+      margin-right: 5vmax;
+    }
   }
 }
 .discover {

@@ -3,6 +3,7 @@ export const state = () => ({
     id: '',
     name: '',
     artist: '',
+    number: 0,
     img: '',
     genre: [],
     color: '',

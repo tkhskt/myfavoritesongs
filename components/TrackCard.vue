@@ -34,6 +34,7 @@
         @mouseover="onHoverPlayer"
         @mouseleave="onHoverOutPlayer"
       ></iframe>
+      <p class="description__number">{{ number }}</p>
     </div>
     <div class="image">
       <img class="image__image" :src="currentTrack.img" />
@@ -46,7 +47,13 @@
   width: 100%;
   height: 100%;
   display: flex;
+  overflow: scroll;
   padding: 10vmin $padding-horizontal 10vmin $padding-horizontal;
+  @media screen and (max-width: $breakpoint) {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+  }
 }
 .close-button {
   position: absolute;
@@ -92,16 +99,26 @@
   background-color: #ffffff;
   height: 100%;
   flex-grow: 1;
-  padding: 5vmin 4vw 0 4vw;
+  padding: 5vmin 4vw;
   text-align: right;
+  position: relative;
+  @media screen and (max-width: $breakpoint) {
+    order: 1;
+    height: auto;
+    align-items: top;
+    padding-bottom: 10vmin;
+  }
   &__name {
     font-size: 3.5vw;
+    line-height: 1.3;
   }
   &__by {
+    margin: 1.2vmin 0;
     font-size: 1.75vw;
   }
   &__artist {
     font-size: 3.5vw;
+    line-height: 1.3;
   }
   &__divider {
     height: 0.5vmin;
@@ -114,12 +131,36 @@
     height: 80px;
     min-width: 300px;
   }
+  &__number {
+    position: absolute;
+    bottom: 5vmin;
+    left: 4vw;
+    font-family: freight-sans-pro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2vmin;
+    @media screen and (max-width: $breakpoint) {
+      top: 5vmin;
+      bottom: auto;
+    }
+  }
 }
 .image {
   height: 100%;
+  @media screen and (max-width: $breakpoint) {
+    height: 100vw;
+    width: 100%;
+    order: 0;
+    background: #ffffff;
+    margin-top: 0;
+  }
   &__image {
     height: 100%;
     object-fit: contain;
+    @media screen and (max-width: $breakpoint) {
+      height: 100vw;
+      width: 100%;
+    }
   }
 }
 </style>
@@ -130,6 +171,10 @@ export default {
   props: ['track', 'parentSize'],
   computed: {
     ...mapState('description', ['currentTrack', 'hoverCloseButton']),
+    number() {
+      const numberText = ('000' + this.currentTrack.number).slice(-3)
+      return `#${numberText}`
+    },
   },
   methods: {
     onHoverClose() {

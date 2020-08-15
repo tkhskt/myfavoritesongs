@@ -30,7 +30,7 @@ import { mapState } from 'vuex'
 import ColorThief from 'colorthief'
 
 export default {
-  props: ['track', 'parentSize'],
+  props: ['track', 'parentSize', 'number'],
   data() {
     return {
       show: false,
@@ -93,6 +93,7 @@ export default {
         id: this.track.track.id,
         name: this.track.track.name,
         artist: this.track.track.artists[0].name,
+        number: this.number,
         img: this.track.track.album.images[0].url,
         genre: [],
         color: this.color,

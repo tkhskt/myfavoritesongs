@@ -1,12 +1,18 @@
 <template>
-  <div class="spotify" @mouseover="onHoverLink" @mouseleave="onHoverOutLink">
+  <a
+    href="https://open.spotify.com/playlist/5obbBP2vx22GMmYlCwLzPx"
+    target="_blank"
+    class="spotify"
+    @mouseover="onHoverLink"
+    @mouseleave="onHoverOutLink"
+  >
     <div class="line">
       <div class="line__line" :class="{ 'line__line--hover': hoverLink }"></div>
     </div>
     <p class="spotify__text">
       listen
     </p>
-  </div>
+  </a>
 </template>
 
 <style scoped lang="scss">
@@ -19,6 +25,9 @@
   align-items: center;
   width: 7.5vmin;
   height: 2vmin;
+  text-decoration: none;
+  user-select: none;
+  color: #000;
   &__text {
     pointer-events: none;
     position: absolute;

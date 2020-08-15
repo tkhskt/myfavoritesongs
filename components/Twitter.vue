@@ -1,12 +1,18 @@
 <template>
-  <div class="twitter" @mouseover="onHoverLink" @mouseleave="onHoverOutLink">
+  <a
+    href="http://twitter.com/share?url=http://localhost:3000&text=MyFavoriteSongs"
+    target="_blank"
+    class="twitter"
+    @mouseover="onHoverLink"
+    @mouseleave="onHoverOutLink"
+  >
     <div class="line">
       <div class="line__line" :class="{ 'line__line--hover': hoverLink }"></div>
     </div>
     <p class="twitter__text">
       share
     </p>
-  </div>
+  </a>
 </template>
 
 <style scoped lang="scss">
@@ -19,6 +25,9 @@
   align-items: center;
   width: 7.5vmin;
   height: 2vmin;
+  text-decoration: none;
+  user-select: none;
+  color: #000;
   &__text {
     position: absolute;
     pointer-events: none;
