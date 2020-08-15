@@ -35,7 +35,9 @@
         v-if="!cursorAnimationRunning && descriptionVisible"
         class="page-title"
       >
-        <p>My Favorite <span class="page-title__songs">Songs</span></p>
+        <p :style="{ color: titleColor }">
+          My Favorite <span class="page-title__songs">Songs</span>
+        </p>
       </div>
     </transition>
     <nav>
@@ -69,6 +71,12 @@ export default {
       'descriptionVisible',
       'maskBackground',
     ]),
+    titleColor() {
+      if (window.innerWidth <= 1350) {
+        return this.currentTrack.inverseColor
+      }
+      return '#000'
+    },
   },
   created() {
     axios

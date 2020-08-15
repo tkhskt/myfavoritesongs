@@ -10,10 +10,12 @@
         <div
           class="close-button__line--1"
           :class="{ 'close-button__line--1--hover': hoverCloseButton }"
+          :style="{ background: closeButtonBackground }"
         ></div>
         <div
           class="close-button__line--2"
           :class="{ 'close-button__line--2--hover': hoverCloseButton }"
+          :style="{ background: closeButtonBackground }"
         ></div>
       </div>
     </div>
@@ -121,6 +123,7 @@
     line-height: 1.3;
   }
   &__divider {
+    margin-top: 1vmin;
     height: 0.5vmin;
   }
   &__player {
@@ -168,12 +171,17 @@
 import { mapState } from 'vuex'
 
 export default {
-  props: ['track', 'parentSize'],
   computed: {
     ...mapState('description', ['currentTrack', 'hoverCloseButton']),
     number() {
       const numberText = ('000' + this.currentTrack.number).slice(-3)
       return `#${numberText}`
+    },
+    closeButtonBackground() {
+      if (window.innerWidth <= 1350) {
+        return this.currentTrack.inverseColor
+      }
+      return '#000'
     },
   },
   methods: {
