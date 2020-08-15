@@ -51,12 +51,15 @@ export default {
         left: 0,
         right: 0,
       },
+      touchStartX: 0,
     }
   },
   mounted() {
     this.$nextTick(() => {
       const element = document.scrollingElement || document.documentElement
       element.addEventListener('wheel', this.transformScroll)
+      element.addEventListener('touchstart', this.touchStart)
+      element.addEventListener('touchmove', this.transformTouchMove)
       this.raf = raf
       this.raf(this.update)
 
@@ -71,6 +74,9 @@ export default {
       this.currentScrollPosition = 0
       this.scrollTarget = 0
     },
+    touchStart() {
+      this.touchStartX = event.touches[0].pageX
+    },
     transformScroll(event) {
       if (
         !event.deltaY ||
@@ -82,17 +88,32 @@ export default {
       this.scrollTarget = this.scrollTarget + event.deltaY * -1.25
       // event.preventDefault()
     },
+    transformTouchMove(event) {
+      const deltaX = this.touchStartX - event.touches[0].pageX
+      this.touchStartX = event.touches[0].pageX
+      if (
+        (this.atStartOfList && deltaX < 0) ||
+        (this.atEndOfList && deltaX > 0)
+      ) {
+        return
+      }
+      this.scrollTarget = this.scrollTarget + deltaX * -4
+    },
     update() {
       this.listWidth =
         document.getElementById('list').scrollWidth -
         window.innerHeight -
         window.innerHeight * 0.05
+      if (window.innerWidth <= 1350) {
+        this.listWidth =
+          document.getElementById('list').scrollWidth -
+          Math.min(window.innerHeight, window.innerWidth)
+      }
       const parent = document.getElementById('songs').getBoundingClientRect()
       this.parentSize = {
         left: parent.left,
         right: parent.right,
       }
-      // console.log(`${this.parentSize.right} ${this.parentSize.left}`)
       if (this.currentScrollPosition <= 0 && this.scrollTarget < 0) {
         this.atStartOfList = true
         this.scrollTarget = 0

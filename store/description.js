@@ -37,7 +37,10 @@ export const actions = {
     commit('setMaskBackground', 'transparent')
     commit('setDescriptionVisible', false)
   },
-  hoverPlayer({ commit }) {
+  hoverPlayer({ commit, state }) {
+    if (!state.descriptionVisible) {
+      return
+    }
     commit('setHoverPlayer', true)
   },
   hoverOutPlayer({ commit }) {
