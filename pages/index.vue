@@ -160,9 +160,11 @@ export default {
   z-index: $z-description;
   font-size: 2vmin;
   @media screen and (max-width: $breakpoint) {
+    top: 2.5vh;
     left: $padding-horizontal;
-    top: 2vh;
+    right: auto;
     bottom: auto;
+    font-size: 5vmin;
   }
   &__songs {
     display: inline-block;
