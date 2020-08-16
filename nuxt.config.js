@@ -1,3 +1,6 @@
+const siteName = 'My Favorite Songs'
+const description = 'Mellifluous'
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -14,15 +17,32 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'My Favorite Songs',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: description },
+      { hid: 'og:site_name', property: 'og:site_name', content: siteName },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
       {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || '',
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://thorn-in-my-si.de',
       },
+      { hid: 'og:title', property: 'og:title', content: siteName },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: description,
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://thorn-in-my-si.de/icon.png',
+      },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+      { hid: 'twitter:site', name: 'twitter:site', content: '@gericass' },
+      { hid: 'twitter:creator', name: 'twitter:creator', content: '@gericass' },
     ],
     script: [
       {

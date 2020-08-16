@@ -15,10 +15,7 @@
           <Songs :tracks="tracks" />
         </div>
       </div>
-      <div
-        v-if="descriptionVisible && !cursorAnimationRunning"
-        class="discover"
-      >
+      <div class="discover">
         <Discover />
       </div>
     </section>
