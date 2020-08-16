@@ -1,5 +1,5 @@
 const siteName = 'My Favorite Songs'
-const description = 'Mellifluous'
+const description = 'gallery of music'
 
 export default {
   /*
@@ -31,7 +31,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://thorn-in-my-si.de',
+        content: 'https://songs.myfavorite.gallery',
       },
       { hid: 'og:title', property: 'og:title', content: siteName },
       {
@@ -42,7 +42,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://thorn-in-my-si.de/icon.png',
+        content: 'https://songs.myfavorite.gallery/icon.png',
       },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
       { hid: 'twitter:site', name: 'twitter:site', content: '@gericass' },

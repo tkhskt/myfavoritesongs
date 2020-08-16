@@ -1,6 +1,6 @@
 <template>
   <a
-    href="http://twitter.com/share?url=http://localhost:3000&text=MyFavoriteSongs"
+    href="http://twitter.com/share?url=https://songs.myfavorite.gallery&text=MyFavoriteSongs"
     target="_blank"
     class="twitter"
     @mouseover="onHoverLink"
