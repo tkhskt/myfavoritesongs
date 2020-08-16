@@ -189,15 +189,6 @@ export default {
   left: $padding-horizontal;
   display: flex;
   z-index: $z-link;
-  @media screen and (max-width: $breakpoint) {
-    position: relative;
-    font-size: 4vmin;
-    color: #1db954;
-    bottom: 5vh;
-    left: auto;
-    padding-left: $padding-horizontal;
-    width: 100%;
-  }
   &__twitter {
     margin-right: 2vmin;
     @media screen and (max-width: $breakpoint) {
