@@ -64,6 +64,10 @@
   top: 2vmin;
   transform-origin: center;
   transform: rotate(45deg);
+  @media screen and (max-width: $breakpoint) {
+    top: 3.2vh;
+    right: $padding-horizontal;
+  }
   .button {
     position: relative;
     pointer-events: none;
