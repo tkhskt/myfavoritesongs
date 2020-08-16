@@ -78,7 +78,7 @@ export default {
       if (newValue) {
         const cursor = document.getElementById('cursor')
         if (window.innerWidth <= 1350) {
-          cursor.style.display = 'none'
+          cursor.style.visibility = 'hidden'
           this.$store.dispatch('description/onCursorAnimationEnd')
           return
         }
@@ -114,7 +114,7 @@ export default {
       this.hoverSocialLink =
         classList.contains('twitter') || classList.contains('spotify')
       if (window.innerWidth <= 1350) {
-        cursor.style.display = 'none'
+        cursor.style.visibility = 'hidden'
         return
       }
       if (
