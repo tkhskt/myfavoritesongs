@@ -35,6 +35,10 @@
     left: calc(3vmin + 8px);
     font-size: 1.5vmin;
     letter-spacing: 0.08em;
+    @media screen and (max-width: $breakpoint) {
+      font-size: 4vmin;
+      color: #1db954;
+    }
   }
 }
 .line {

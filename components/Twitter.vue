@@ -35,12 +35,19 @@
     left: calc(3vmin + 8px);
     font-size: 1.5vmin;
     letter-spacing: 0.08em;
+    @media screen and (max-width: $breakpoint) {
+      font-size: 4vmin;
+      color: #1da1f2;
+    }
   }
 }
 .line {
   position: relative;
   width: 3vmin;
   pointer-events: none;
+  @media screen and (max-width: $breakpoint) {
+    width: 5vmin;
+  }
   &__line {
     position: absolute;
     pointer-events: none;

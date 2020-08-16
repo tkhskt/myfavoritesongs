@@ -164,12 +164,16 @@ export default {
     left: $padding-horizontal;
     right: auto;
     bottom: auto;
+    font-size: 5vmin;
   }
   &__songs {
     display: inline-block;
     margin-left: 0.5vmin;
     font-size: 3vmin;
     color: $color-accent;
+    @media screen and (max-width: $breakpoint) {
+      font-size: 7vmin;
+    }
   }
 }
 .fade-enter-active,
@@ -196,5 +200,8 @@ export default {
   position: absolute;
   right: 0;
   bottom: 0;
+  @media screen and (max-width: $breakpoint) {
+    visibility: hidden;
+  }
 }
 </style>

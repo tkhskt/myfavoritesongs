@@ -113,18 +113,30 @@
   &__name {
     font-size: 3.5vw;
     line-height: 1.3;
+    @media screen and (max-width: $breakpoint) {
+      font-size: 7vmin;
+    }
   }
   &__by {
     margin: 1.2vmin 0;
     font-size: 1.75vw;
+    @media screen and (max-width: $breakpoint) {
+      font-size: 3.5vmin;
+    }
   }
   &__artist {
     font-size: 3.5vw;
     line-height: 1.3;
+    @media screen and (max-width: $breakpoint) {
+      font-size: 7vmin;
+    }
   }
   &__divider {
     margin-top: 1vmin;
     height: 0.5vmin;
+    @media screen and (max-width: $breakpoint) {
+      height: 1vmin;
+    }
   }
   &__player {
     cursor: default;
@@ -143,6 +155,7 @@
     font-style: normal;
     font-size: 2vmin;
     @media screen and (max-width: $breakpoint) {
+      font-size: 4.5vmin;
       top: 5vmin;
       bottom: auto;
     }
