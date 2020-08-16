@@ -99,9 +99,9 @@ export default {
   },
   methods: {
     mouseMove(event) {
-      if (this.cursorAnimationRunning) {
-        return
-      }
+      // if (this.cursorAnimationRunning) {
+      //   return
+      // }
       const cursor = document.getElementById('cursor')
       const classList = event.target.classList
       this.hoverSocialLink =
