@@ -159,6 +159,11 @@ export default {
   bottom: 1.5vh;
   z-index: $z-description;
   font-size: 2vmin;
+  @media screen and (max-width: $breakpoint) {
+    left: $padding-horizontal;
+    top: 2vh;
+    bottom: auto;
+  }
   &__songs {
     display: inline-block;
     margin-left: 0.5vmin;
@@ -187,6 +192,9 @@ export default {
     font-size: 4vmin;
     color: #1db954;
     bottom: 5vh;
+    left: auto;
+    padding-left: $padding-horizontal;
+    width: 100%;
   }
   &__twitter {
     margin-right: 2vmin;
