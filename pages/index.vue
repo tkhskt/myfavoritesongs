@@ -15,9 +15,6 @@
           <Songs :tracks="tracks" />
         </div>
       </div>
-      <div class="discover">
-        <Discover />
-      </div>
     </section>
     <transition name="fade">
       <section
@@ -27,6 +24,9 @@
         <TrackCard />
       </section>
     </transition>
+    <div class="discover">
+      <Discover />
+    </div>
     <transition name="fade">
       <div
         v-if="!cursorAnimationRunning && descriptionVisible"
