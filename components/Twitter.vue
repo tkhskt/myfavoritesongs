@@ -46,7 +46,7 @@
   width: 3vmin;
   pointer-events: none;
   @media screen and (max-width: $breakpoint) {
-    width: 5vmin;
+    display: none;
   }
   &__line {
     position: absolute;
