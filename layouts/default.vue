@@ -2,7 +2,6 @@
   <div>
     <Nuxt />
     <span
-      v-show="!hoverPlayer"
       id="cursor"
       class="cursor"
       :style="{
