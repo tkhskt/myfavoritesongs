@@ -113,10 +113,6 @@ export default {
       const classList = event.target.classList
       this.hoverSocialLink =
         classList.contains('twitter') || classList.contains('spotify')
-      if (window.innerWidth <= 1350) {
-        cursor.style.visibility = 'hidden'
-        return
-      }
       if (
         event.target.classList.contains('list__img') ||
         this.hoverSocialLink ||
