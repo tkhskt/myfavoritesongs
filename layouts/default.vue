@@ -2,6 +2,7 @@
   <div>
     <Nuxt />
     <span
+      v-show="!hoverPlayer"
       id="cursor"
       class="cursor"
       :style="{
@@ -19,6 +20,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
+  visibility: hidden;
   width: 1vmin;
   height: 1vmin;
   min-width: 10px;
@@ -36,7 +38,7 @@
 </style>
 <script>
 import { mapState } from 'vuex'
-import { TweenLite, Expo } from 'gsap'
+import { TweenLite, Expo } from 'gsap/dist/gsap'
 
 export default {
   data() {
@@ -99,9 +101,9 @@ export default {
   },
   methods: {
     mouseMove(event) {
-      // if (this.cursorAnimationRunning) {
-      //   return
-      // }
+      if (this.cursorAnimationRunning) {
+        return
+      }
       const cursor = document.getElementById('cursor')
       const classList = event.target.classList
       this.hoverSocialLink =
@@ -125,6 +127,7 @@ export default {
       }
       TweenLite.to(cursor, 0.2, {
         css: {
+          visibility: 'visible',
           left: event.clientX,
           top: event.clientY,
         },
