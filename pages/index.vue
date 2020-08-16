@@ -159,13 +159,6 @@ export default {
   bottom: 1.5vh;
   z-index: $z-description;
   font-size: 2vmin;
-  @media screen and (max-width: $breakpoint) {
-    top: 2.5vh;
-    left: $padding-horizontal;
-    right: auto;
-    bottom: auto;
-    font-size: 5vmin;
-  }
   &__songs {
     display: inline-block;
     margin-left: 0.5vmin;
@@ -189,6 +182,12 @@ export default {
   left: $padding-horizontal;
   display: flex;
   z-index: $z-link;
+  @media screen and (max-width: $breakpoint) {
+    position: relative;
+    font-size: 4vmin;
+    color: #1db954;
+    bottom: 5vh;
+  }
   &__twitter {
     margin-right: 2vmin;
     @media screen and (max-width: $breakpoint) {

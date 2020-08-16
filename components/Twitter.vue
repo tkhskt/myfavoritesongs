@@ -29,6 +29,10 @@
   user-select: none;
   cursor: none;
   color: #000;
+  @media screen and (max-width: $breakpoint) {
+    width: auto;
+    height: auto;
+  }
   &__text {
     position: absolute;
     pointer-events: none;
@@ -36,7 +40,9 @@
     font-size: 1.5vmin;
     letter-spacing: 0.08em;
     @media screen and (max-width: $breakpoint) {
+      position: relative;
       font-size: 4vmin;
+      left: auto;
       color: #1da1f2;
     }
   }
