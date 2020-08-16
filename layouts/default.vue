@@ -78,11 +78,7 @@ export default {
       if (newValue) {
         const cursor = document.getElementById('cursor')
         if (window.innerWidth <= 1350) {
-          TweenLite.to(cursor, 0, {
-            css: {
-              visibility: 'hidden',
-            },
-          })
+          cursor.style.display = 'none'
           this.$store.dispatch('description/onCursorAnimationEnd')
           return
         }
@@ -117,6 +113,10 @@ export default {
       const classList = event.target.classList
       this.hoverSocialLink =
         classList.contains('twitter') || classList.contains('spotify')
+      if (window.innerWidth <= 1350) {
+        cursor.style.display = 'none'
+        return
+      }
       if (
         event.target.classList.contains('list__img') ||
         this.hoverSocialLink ||
