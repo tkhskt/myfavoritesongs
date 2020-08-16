@@ -108,6 +108,13 @@ export default {
       const classList = event.target.classList
       this.hoverSocialLink =
         classList.contains('twitter') || classList.contains('spotify')
+      if (window.innerWidth <= 1350) {
+        TweenLite.to(cursor, 0, {
+          css: {
+            visibility: 'hidden',
+          },
+        })
+      }
       if (
         event.target.classList.contains('list__img') ||
         this.hoverSocialLink ||
