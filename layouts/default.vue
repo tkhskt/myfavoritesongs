@@ -19,7 +19,6 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  visibility: hidden;
   width: 1vmin;
   height: 1vmin;
   min-width: 10px;
@@ -126,7 +125,6 @@ export default {
       }
       TweenLite.to(cursor, 0.2, {
         css: {
-          visibility: 'visible',
           left: event.clientX,
           top: event.clientY,
         },
